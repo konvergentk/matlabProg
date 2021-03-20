@@ -32,6 +32,6 @@ for i = 1:1:n
     end
     P = P + Arr(1, i) * ms;
 end
-plot(X, Y);
+plot(X, Y, 'o--k', x0, P, 'xr');
 disp(P);
 end
