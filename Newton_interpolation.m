@@ -12,18 +12,21 @@
 
 function Newton_interpolation(X, Y, x0)
 n = length(X) - 1;
-Arr = zeros(n);
+Arr = zeros(n);%Создаем матрицу с 0
 
+%Заполняем первый столбец начальными разностями
 for i = 1:1:n
     Arr(i, 1) = (Y(i+1) - Y(i))/(X(i+1) - X(i));
 end
 
+%Заканчиваем заполнять матрицу с разностями 
 for i = 2:1:n
     for j = 1:1:n-i+1
         Arr(j, i) = (Arr(j+1, i-1) - Arr(j, i-1))/(X(i+j) - X(j));
     end
 end
 
+%Считаем каждое слагаемое и прибавляем к ответу
 P = Y(1);
 for i = 1:1:n
     ms = 1;
@@ -32,6 +35,10 @@ for i = 1:1:n
     end
     P = P + Arr(1, i) * ms;
 end
+
+%Рисуем график с точкой ответа
 plot(X, Y, 'o--k', x0, P, 'xr');
+
+%Выводим ответ
 disp(P);
 end
